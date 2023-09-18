@@ -3,10 +3,9 @@ package com.example.customersystem.controller;
 import com.example.customersystem.model.Customer;
 import com.example.customersystem.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
@@ -19,5 +18,10 @@ public class CustomerController {
     public String add(@RequestBody Customer customer){
         customerService.saveCustomer(customer);
         return "New Customer is added";
+    }
+
+    @GetMapping("/getAll")
+    public List<Customer> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 }
